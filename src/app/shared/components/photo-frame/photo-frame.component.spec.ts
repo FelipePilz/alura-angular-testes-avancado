@@ -27,7 +27,7 @@ describe(PhotoFrameComponent.name, () => {
 
   it(`#${PhotoFrameComponent.prototype.like.name}
   should trigger (@Output liked) once
-  when called multiple times withint debounce time`, fakeAsync(() => {
+  when called multiple times within debounce time`, fakeAsync(() => {
     fixture.detectChanges();
     let times = 0;
     component.liked.subscribe(() => times++);
@@ -57,5 +57,19 @@ describe(PhotoFrameComponent.name, () => {
     const element: HTMLElement =
       fixture.nativeElement.querySelector('.like-counter');
     expect(element.textContent.trim()).toBe('1');
+  });
+
+  it('Should update aria-label when (@Input likes) is incremented', () => {
+    fixture.detectChanges();
+    component.likes++;
+    fixture.detectChanges();
+    const element: HTMLElement = fixture.nativeElement.querySelector('span');
+    expect(element.getAttribute('aria-label')).toBe('1: people liked');
+  });
+
+  it('Should have aria-label with 0 (@Input likes)', () => {
+    fixture.detectChanges();
+    const element: HTMLElement = fixture.nativeElement.querySelector('span');
+    expect(element.getAttribute('aria-label')).toBe('0: people liked');
   });
 });
