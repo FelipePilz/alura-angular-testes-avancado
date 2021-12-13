@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-photo-frame',
   templateUrl: './photo-frame.component.html',
-  styleUrls: ['./photo-frame.component.css'],
+  styleUrls: ['./photo-frame.component.scss'],
 })
 export class PhotoFrameComponent {
   @Output() public liked: EventEmitter<void> = new EventEmitter();
