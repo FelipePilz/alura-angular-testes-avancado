@@ -23,7 +23,17 @@ describe(ActionDirective.name, () => {
       fixture.nativeElement.querySelector('.dummy-component');
     const event = new KeyboardEvent('keyup', { key: 'Enter' });
     divEl.dispatchEvent(event);
-    expect(component.hasEvent()).toBe(true);
+    expect(component.hasEvent()).toBeTrue();
+  });
+
+  it(`(D) (@OutPut appAction)
+  should emit event with payload
+  when clicked`, () => {
+    const divEl: HTMLElement =
+      fixture.nativeElement.querySelector('.dummy-component');
+    const event = new Event('click');
+    divEl.dispatchEvent(event);
+    expect(component.hasEvent()).toBeTrue();
   });
 });
 
