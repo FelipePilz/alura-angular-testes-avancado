@@ -3,6 +3,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PhotoListComponent } from './photo-list.component';
 import { PhotoListModule } from './photo-list.module';
+import { buildPhotoList } from 'src/app/shared/components/photo-board/tests/build-photos-list';
+import { of } from 'rxjs';
 
 describe(PhotoListComponent.name, () => {
   let fixture: ComponentFixture<PhotoListComponent>;
@@ -25,5 +27,7 @@ describe(PhotoListComponent.name, () => {
 
   it('(D) Should display board when data arrives', () => {
     fixture.detectChanges();
+    const photos = buildPhotoList();
+    spyOn(service, 'getPhotos').and.returnValue(of(photos));
   });
 });
